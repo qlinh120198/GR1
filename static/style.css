@@ -1,0 +1,34 @@
+body {
+    font-family: Arial;
+    font-size: 10pt;
+    background-color: lavender;
+}
+
+table {
+    border: 4px solid #ccc;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 5px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 500%;
+}
+
+h2 {
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 300%;
+}
+
+#info {
+    text-align: center;
+    background: #E6E6FA;
+    float: right;
+    width: 50%;
+    height: 600px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html <html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Clustering Algorithm</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <style>
+        ul.a {
+            list-style-type: circle;
+        }
+        
+        ul.b {
+            list-style-type: disc;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="row">
+        <div class="col-xs-12">
+            <h1>Result</h1>
+        </div>
+    </header>
+
+    <ul class="b" style="color: blue; font-size: 16pt;font-family: 'Courier New', Courier, monospace;">
+        <li>Mean = {{mean_val}}</li>
+    </ul>
+
+    <ul class="b" style="color: blue; font-size: 16pt;font-family: 'Courier New', Courier, monospace;">
+        <li>Standard deviation = {{dev}}</li>
+    </ul>
+
+    <ul class="b" style="color: green; font-size: 16pt;font-family: 'Courier New', Courier, monospace;">
+        <li>Accuracy = {{acc}}</li>
+    </ul>
+
+    <p style="color: blue; font-size: 16pt;font-family: 'Courier New', Courier, monospace;">
+        Cluster center vectors:<br />
+    </p>
+    <ul class="a">
+        {%for n in cluster_centers%}
+        <li>{{n}}</li>
+        {%endfor%}
+    </ul>
+
+    <p style="color: orange; font-size: 18pt;font-family: 'Courier New', Courier, monospace;">
+        Result<br />
+    </p>
+    <div style="display: flex; justify-content: center;">
+        <img src="{{url2}}" alt="Chart" height="700px" width="700px" />
+        <img src="{{url3}}" alt="Chart" height="700px" width="700px" />
+    </div>
+</body>

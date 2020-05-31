@@ -1,0 +1,44 @@
+<!DOCTYPE html <html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Describe your dataset</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <style>
+        ul.a {
+            list-style-type: circle;
+        }
+        
+        ul.b {
+            list-style-type: disc;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="row">
+        <div class="col-xs-12">
+            <h1>Explore Dataset</h1>
+        </div>
+    </header>
+
+    <div style="color: brown; font-size: 14pt;font-family: 'Courier New', Courier, monospace;display: flex; justify-content: space-around;">
+        <p>1. Here is the first 5 rows of your dataset:</p>
+        <p>2. Here is the last 5 rows of your dataset:</p>
+    </div>
+
+    <div style="display: flex; justify-content: space-around;">
+        {{df_head.to_html(index = False) | safe}} {{df_tail.to_html(index = False) | safe}}
+    </div>
+
+    <p style="font-size: 14pt;font-family: 'Courier New', Courier, monospace;">
+        <br />3. There are <b style="color: red;">{{rows}}</b> rows and
+        <b style="color: red;">{{cols}}</b> columns in your dataset.
+    </p>
+
+    <p style="font-size: 14pt;font-family: 'Courier New', Courier, monospace;">
+        <br />4. Some basic descriptive statistics:
+    </p>
+    <div style="display: flex; justify-content: center;">
+        {{describe.to_html() | safe}}
+    </div>
+</body>

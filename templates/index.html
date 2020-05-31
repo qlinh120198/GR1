@@ -1,0 +1,53 @@
+<!DOCTYPE html <html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Clustering Algorithm</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <style>
+        input[type='submit'] {
+            box-shadow: 0px 1px 0px 0px #f0f7fa;
+            background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+            background-color: #33bdef;
+            border-radius: 6px;
+            border: 1px solid #057fd0;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px -1px 0px #5b6178;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position: absolute; top: 0; left: 20px;">
+        <header class="row">
+            <div class="col-xs-12">
+                <h1>Clustering Algorithm for Iris Dataset</h1>
+            </div>
+        </header>
+        <h2 style="color:brown;">Please upload your file</h2>
+        <br /><br />
+
+        <form method="POST" action="uploadFile" enctype="multipart/form-data">
+            <input type="file" name="csvfile" />
+
+            <!-- <input type="submit" name="submit_button" value="Analyze_data" /> -->
+            <input type="submit" name="submit_button" value="View_dataset" />
+            <input type="submit" name="submit_button" value="Plotting_dataset" />
+            <input type="submit" name="submit_button" value="Describe_dataset" />
+            <input type="submit" name="submit_button" value="Cluster_dataset" />
+            <input type="submit" name="submit_button" value="Result" />
+            <br><br><br>
+            <label>Please enter number of clusters: </label>
+            <input type="number" name="k_val" placeholder="Number of clusters..." min="2"><br><br>
+            <label>Please enter the value of fuzzy exponent (recommend between 1.0 and 2.0): </label>
+            <input type="number" step="any" name="m_val" placeholder="Enter value of fuzzy exponent..." min="1"><br>
+
+        </form>
+    </div>
+</body>

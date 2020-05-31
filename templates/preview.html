@@ -1,0 +1,14 @@
+<!DOCTYPE html <html xmlns="http://www.w3.org/1999/xhtml"> {% extends "material/base.html" %} {% block content %}
+<div class="showcase container purple lighten-3">
+    <div class="row">
+        <div class="col 12 m10 offset-ml center">
+            <h2>Your Dataset</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {{ df_view.to_html(classes="table striped",na_rep="-") | safe}}
+</div>
+
+{% endblock %} {% block scripts %} {{ super() }} {% endblock %}
