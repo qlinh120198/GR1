@@ -1,4 +1,5 @@
 <!DOCTYPE html <html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
     <title>Clustering Algorithm</title>
@@ -14,6 +15,24 @@
     </style>
 </head>
 
+<style type="text/css">
+    th:tr {
+        color: blue;
+
+    }
+
+    tr:nth-of-type(2n) {
+        border: 1px solid black;
+        background-color: rgba(150, 150, 150, 0.5);
+
+    }
+
+    td {
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+</style>
+
 <body>
     <header class="row">
         <div class="col-xs-12">
@@ -24,4 +43,27 @@
     <ul class="b" style="color: green; font-size: 16pt;font-family: 'Courier New', Courier, monospace;">
         <li>Accuracy = {{acc}}</li>
     </ul>
+
+    <table style="margin-left: 20px;">
+        <th>
+            <tr style="color: green;">
+                <td>Id</td>
+                <td>Predicted label</td>
+                <td>True label</td>
+            </tr>
+        </th>
+        {% for i in range(labels_str|length) %}
+        <tr>
+            <td>{{i + 1}}</td>
+            <td>{{labels_str[i]}}</td>
+            <td>{{true_labels[i]}}</td>
+
+            {% endfor %}
+        </tr>
+
+    </table>
+
+
 </body>
+
+</html>

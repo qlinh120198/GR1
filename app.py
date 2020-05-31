@@ -140,7 +140,7 @@ def preview():
     if request.method == 'POST':
         f = request.files['csvfile']
         df_full = pd.read_csv(f)    # Read CSV file
-        if request.form['submit_button'] == 'Cluster_dataset':
+        if request.form['submit_button'] == 'Plot_iris_result':
             columns = list(df_full.columns)
             features = columns[:len(columns)-1]
             class_labels = list(df_full[columns[-1]])
@@ -344,7 +344,20 @@ def preview():
             labels, centers, acc = fuzzyCMeansClustering(n, k, m, df, MAX_ITER)
             a = accuracy(labels, class_labels)
 
-            return render_template('result.html', acc=a)
+            seto = max(set(labels[0:50]), key=labels[0:50].count)
+            vers = max(set(labels[50:100]), key=labels[50:100].count)
+            virg = max(set(labels[100:]), key=labels[100:].count)
+
+            labels_str = []
+            for i in labels:
+                if i == seto:
+                    labels_str.append("Iris-setosa")
+                elif i == vers:
+                    labels_str.append("Iris-versicolor")
+                elif i == virg:
+                    labels_str.append("Iris-virginica")
+
+            return render_template('result.html', acc=a, labels_str=labels_str, true_labels=class_labels)
 
 
 if __name__ == "__main__":
