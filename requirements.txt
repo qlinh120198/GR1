@@ -49,7 +49,6 @@ Pillow==7.1.2
 pipenv==2020.5.28
 prompt-toolkit==2.0.10
 pybricks-stubs==0.0.6
-pycipher==0.5.1
 pycodestyle==2.5.0
 pycparser==2.20
 Pygments==2.4.2
