@@ -141,8 +141,6 @@ def preview():
         f = request.files['csvfile']
         df_full = pd.read_csv(f)    # Read CSV file
         if request.form['submit_button'] == 'Cluster_dataset':
-            df_full = df_full.drop(['Id'], axis=1)
-
             columns = list(df_full.columns)
             features = columns[:len(columns)-1]
             class_labels = list(df_full[columns[-1]])
@@ -317,8 +315,7 @@ def preview():
             b = df_full.tail()
             des = df_full.describe()
             row_num = len(df_full)
-            df = df_full.drop(['Id'], axis=1)
-            col_num = len(df.columns)
+            col_num = len(df_full.columns)
             return render_template('describe.html', df_head=a, df_tail=b, rows=row_num, cols=col_num, describe=des)
 
         elif request.form['submit_button'] == 'Result':
