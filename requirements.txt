@@ -60,7 +60,6 @@ python-ev3dev==1.2.0
 python-ev3dev2==2.1.0.post1
 pytz==2019.3
 pyvi==0.0.9.7
-pywin32==225
 requests==2.22.0
 rope==0.17.0
 rope-py3k==0.9.4.post1
