@@ -16,6 +16,7 @@ import random
 import operator
 import math
 import matplotlib.pyplot as plt
+import seaborn as sns
 from scipy.stats import multivariate_normal     # for generating pdf
 from sklearn.metrics import mutual_info_score
 
@@ -146,6 +147,9 @@ def preview():
             class_labels = list(df_full[columns[-1]])
             df = df_full[features]
 
+            img_sepal = io.BytesIO()
+            img_petal = io.BytesIO()
+
             # Number of Clusters
             k = int(request.form['k_val'])
             # Maximum number of iterations
@@ -235,7 +239,9 @@ def preview():
             # Y-Axis
             plt.ylabel('Sepal Width', fontsize=16)
             plt.title('Final Clusters(Sepal)', fontsize=22)
-            plt.savefig('static/images/sepal_final.png')
+            plt.savefig(img_sepal, format='png')
+            img_sepal.seek(0)
+            url_sepal_final = base64.b64encode(img_sepal.getvalue()).decode()
 
             # petal
             p_mean_clus1 = np.array([centers[seto][2], centers[seto][3]])
@@ -276,39 +282,48 @@ def preview():
             # Y-Axis
             plt.ylabel('Petal Width', fontsize=16)
             plt.title('Final Clusters(Petal)', fontsize=22)
-            plt.savefig('static/images/petal_final.png')
+            plt.savefig(img_petal, format='png')
+            img_petal.seek(0)
+            url_petal_final = base64.b64encode(img_petal.getvalue()).decode()
 
             return render_template("cluster.html", acc=a, cluster_centers=centers, mean_val=mean, dev=deviation,
-                                   url2='/static/images/sepal_final.png', url3='/static/images/petal_final.png')
+                                   url3=url_sepal_final, url4=url_petal_final)
 
         elif request.form['submit_button'] == 'View_dataset':
             return render_template("preview.html", df_view=df_full)
 
-        elif request.form['submit_button'] == 'Plotting_dataset':
+        elif request.form['submit_button'] == 'Plotting_iris':
             # df_full = df_full.drop(['Id'], axis=1)
 
             columns = list(df_full.columns)
             features = columns[:len(columns)-1]
             class_labels = list(df_full[columns[-1]])
             df = df_full[features]
+
+            img1 = io.BytesIO()
+            img2 = io.BytesIO()
             # scatter plot of sepal length vs sepal width
             plt.figure(figsize=(10, 10))
             plt.scatter(list(df.iloc[:, 0]), list(df.iloc[:, 1]), marker='o')
             plt.axis('equal')
-            plt.xlabel('x_label', fontsize=16)
-            plt.ylabel('y_label', fontsize=16)
+            plt.xlabel('Sepal length', fontsize=16)
+            plt.ylabel('Sepal width', fontsize=16)
             plt.title('Sepal Plot', fontsize=22)
-            plt.savefig('static/images/sepal.png')
+            plt.savefig(img1, format='png')
+            img1.seek(0)
+            url1 = base64.b64encode(img1.getvalue()).decode()
 
             # scatter plot of petal length vs sepal width
             plt.figure(figsize=(10, 10))
             plt.scatter(list(df.iloc[:, 2]), list(df.iloc[:, 3]), marker='o')
             plt.axis('equal')
-            plt.xlabel('x_label', fontsize=16)
-            plt.ylabel('y_label', fontsize=16)
+            plt.xlabel('Petal length', fontsize=16)
+            plt.ylabel('Petal_width', fontsize=16)
             plt.title('Petal Plot', fontsize=22)
-            plt.savefig('static/images/petal.png')
-            return render_template('plot.html', url='/static/images/sepal.png', url1='/static/images/petal.png')
+            plt.savefig(img2, format='png')
+            img2.seek(0)
+            url2 = base64.b64encode(img2.getvalue()).decode()
+            return render_template('plot.html', url_sepal=url1, url_petal=url2)
 
         elif request.form['submit_button'] == 'Describe_dataset':
             a = df_full.head()
@@ -319,8 +334,6 @@ def preview():
             return render_template('describe.html', df_head=a, df_tail=b, rows=row_num, cols=col_num, describe=des)
 
         elif request.form['submit_button'] == 'Result':
-            # df_full = df_full.drop(['Id'], axis=1)
-
             columns = list(df_full.columns)
             features = columns[:len(columns)-1]
             class_labels = list(df_full[columns[-1]])
@@ -358,6 +371,18 @@ def preview():
                     labels_str.append("Iris-virginica")
 
             return render_template('result.html', acc=a, labels_str=labels_str, true_labels=class_labels)
+
+        elif request.form['submit_button'] == 'Visualize dataset':
+            # columns = list(df_full.columns)
+            # label = list(df_full[columns[-1]])
+            label = df_full.columns[-1]
+            img = io.BytesIO()
+            sns_plot = sns.pairplot(df_full, hue=label)
+            sns_plot.savefig(img, format='png')
+            img.seek(0)
+            url = base64.b64encode(img.getvalue()).decode()
+
+            return render_template('visualize.html', plot_url=url)
 
 
 if __name__ == "__main__":
