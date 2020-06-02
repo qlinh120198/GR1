@@ -44,25 +44,34 @@
         <li>Accuracy = {{acc}}</li>
     </ul>
 
-    <table style="margin-left: 20px;">
-        <th>
-            <tr style="color: green;">
-                <td>Id</td>
-                <td>Predicted label</td>
-                <td>True label</td>
+    <div style="display: flex; justify-content: space-around;">
+
+        <table style="margin-left: 20px;">
+            <th>
+                <tr style="color: green;">
+                    <td>Id</td>
+                    <td>Predicted label</td>
+                    <td>True label</td>
+                    <td>Result</td>
+                </tr>
+            </th>
+            {% for i in range(labels_str|length) %}
+            <tr>
+                <td>{{i + 1}}</td>
+                <td>{{labels_str[i]}}</td>
+                <td>{{true_labels[i]}}</td>
+                <td>{{results[i]}}</td>
+                {% endfor %}
             </tr>
-        </th>
-        {% for i in range(labels_str|length) %}
-        <tr>
-            <td>{{i + 1}}</td>
-            <td>{{labels_str[i]}}</td>
-            <td>{{true_labels[i]}}</td>
+        </table>
 
-            {% endfor %}
-        </tr>
 
-    </table>
+        <p style="font-size: 14pt;font-family: 'Courier New', Courier, monospace;">
+            <br />There are <b style="color: red;">{{correct}}</b> correct predictions and
+            <b style="color: red;">{{wrong}}</b> wrong predictions.
+        </p>
 
+    </div>
 
 </body>
 

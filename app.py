@@ -370,7 +370,18 @@ def preview():
                 elif i == virg:
                     labels_str.append("Iris-virginica")
 
-            return render_template('result.html', acc=a, labels_str=labels_str, true_labels=class_labels)
+            result = []
+            count_correct = 0
+            count_wrong = 0
+            for i in range(len(labels_str)):
+                if (labels_str[i] == class_labels[i]):
+                    result.append("Correct")
+                    count_correct = count_correct + 1
+                else:
+                    result.append("Wrong")
+                    count_wrong = count_wrong + 1
+            return render_template('result.html', acc=a, labels_str=labels_str, true_labels=class_labels, results=result,correct = count_correct ,
+                                                                                                            wrong = count_wrong)
 
         elif request.form['submit_button'] == 'Visualize dataset':
             # columns = list(df_full.columns)
