@@ -3,6 +3,7 @@
 <head>
     <title>Clustering Algorithm</title>
     <link rel="stylesheet" href="../static/style.css" />
+
     <style>
         input[type='submit'] {
             box-shadow: 0px 1px 0px 0px #f0f7fa;
@@ -24,6 +25,7 @@
 </head>
 
 <body>
+
     <div style="position: absolute; top: 0; left: 20px;">
         <header class="row">
             <div class="col-xs-12">
@@ -34,16 +36,24 @@
         <br /><br />
 
         <form method="POST" action="uploadFile" enctype="multipart/form-data">
-            <input type="file" name="csvfile" />
 
-            <!-- <input type="submit" name="submit_button" value="Analyze_data" /> -->
-            <input type="submit" name="submit_button" value="View_dataset" />
-            <input type="submit" name="submit_button" value="Plotting_iris" />
-            <input type="submit" name="submit_button" value="Describe_dataset" />
-            <input type="submit" name="submit_button" value="Plot_iris_result" />
-            <input type="submit" name="submit_button" value="Result" />
-            <br><br>
-            <input type="submit" name="submit_button" value="Visualize dataset" />
+            <div style="display: flex;">
+                <input type="file" name="csvfile" />
+                <div style="display: flex; flex-direction: column;">
+                    <div style="display: flex;">
+                        <input type="submit" name="submit_button" value="View_dataset" />
+                        <input type="submit" name="submit_button" value="Plotting_iris" />
+                        <input type="submit" name="submit_button" value="Describe_dataset" />
+                        <input type="submit" name="submit_button" value="Plot_iris_result" />
+                        <input type="submit" name="submit_button" value="Result" />
+
+                    </div>
+                    <div style="display: flex;">
+                        <input type="submit" name="submit_button" value="Visualize dataset" />
+                    </div>
+                </div>
+
+            </div>
 
             <br><br><br>
             <label>Please enter number of clusters: </label>
@@ -53,4 +63,5 @@
 
         </form>
     </div>
+
 </body>
