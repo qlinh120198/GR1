@@ -46,7 +46,7 @@ pandas==0.25.2
 pandocfilters==1.4.2
 parso==0.5.1
 pickleshare==0.7.5
-Pillow==7.1.2
+Pillow==8.1.1
 pipenv==2020.5.28
 prompt-toolkit==2.0.10
 pybricks-stubs==0.0.6
